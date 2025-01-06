@@ -8,11 +8,15 @@ public class TestDatastructures : AssignmentBase
 
     Datastructures datastructures = new Datastructures()
     {
-        Strings = [],
-        Integers = [],
-        Doubles = [],
-        Strings2d = [],
-        Doubles2d = [],
+        Strings = new string[5],
+        Integers = new int[5],
+        Doubles = new double[5],
+        Booleans = new bool[2],
+        Strings2d = new string[1][],
+        Integers2d = new int[1][],
+        Doubles2d = new double[1][],
+        StringsList = [],
+        KeyValuePairs = []
     };
 
 
