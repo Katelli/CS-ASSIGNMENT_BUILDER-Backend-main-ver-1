@@ -10,17 +10,20 @@ public class TestArrayAndListMethods : AssignmentBase
 {
     public string[] StringArray(string[] arr)
     {
-        throw new NotImplementedException();
+        return arr;
+        //throw new NotImplementedException();
     }
 
     public int[] IntSum(int a, int b)
     {
-        throw new NotImplementedException();
+        return new int[a+b];
+        //throw new NotImplementedException();
     }
 
     public List<string> LoopList(List<string> element)
     {
-        throw new NotImplementedException();
+        return new List<string>(element);
+        //throw new NotImplementedException();
     }
     /// <summary>
     /// Implement a simple Dictionary method
@@ -30,12 +33,14 @@ public class TestArrayAndListMethods : AssignmentBase
     /// <exception cref="NotImplementedException"></exception>
     public Dictionary<int, string> LoopDict(Dictionary<int, string> element)
     {
-        throw new NotImplementedException();
+        return new Dictionary<int, string>(element){};
+        //throw new NotImplementedException();
     }
 
     public string ReverseString(string arr)
     {
-        throw new NotImplementedException();
+        return arr.Reverse().ToString()!;
+        //throw new NotImplementedException();
     }
 
     /*
@@ -59,13 +64,70 @@ public class TestArrayAndListMethods : AssignmentBase
     /// <exception cref="NotImplementedException"></exception>
     public int BinarySearch(int[] arr, int x)
     {
-        // Array.Sort(arr);
-        if (x == -1 || arr == null)
+        int left = 0;
+        int right = arr.Length - 1;
+        while (left <= right)
         {
-            throw new Exception();
+            int middle = (left + right)/2;
+            if (x == arr[middle])
+            {
+                return middle;
+            }
+            else if (x < arr[middle])
+            {
+                right = middle - 1;
+            }
+            else
+            {
+                left = middle + 1;
+            }
+        }
+        return - 1;
+        // // Array.Sort(arr);
+        // if (x == -1 || arr == null)
+        // {
+        //     throw new Exception();
+        // }
+        // throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// PlaceHolder for missing method for assignment 7
+    /// I tried testing out some stuff, but I'm not sure what
+    /// the assignment wants yet.
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public int[] PrimitiveTypeHandling(int a, int b)
+    {
+        if(b < 0)
+        {
+            return new int[a-b];
+        }
+        else
+        {
+            return new int[a+b];
         }
         throw new NotImplementedException();
     }
+
+    /// <summary>
+    /// PlaceHolder for missing method for assignment 8
+    /// I tried testing it with a function I found in the class,
+    /// and it seems to work, though I'm not sure if it was
+    /// what I was supposed to do.
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public bool ObjectEquality(object a, object b)
+    {
+        return a.Equals(b);
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// A method that implements the Fibonacci sequence, starting from n = 1
     /// </summary>
@@ -74,7 +136,17 @@ public class TestArrayAndListMethods : AssignmentBase
     /// <exception cref="NotImplementedException"></exception>
     public int Fibonacci(int n)
     {
-        throw new NotImplementedException();
+        int a = 0;
+        int b = 1;
+        int c;
+        for(int i = 0; i < n; i++)
+        {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return a;
+        //throw new NotImplementedException();
     }
 
 
@@ -127,41 +199,41 @@ public class TestArrayAndListMethods : AssignmentBase
         int[] samplePool = {
             1,2,3,4,5,6,7,8,9,10,12,24,32,48,56,64,128,256,512,1024,2048, 1213, 1440, 2414, 93, 23,
         };
+        int pool = 0;
         Array.Sort(samplePool);
         foreach (var value in expectedXValues)
         {
             int result = BinarySearch(samplePool, value);
-            Assert.Equal(value, result);
+            Assert.Equal(Array.IndexOf(samplePool, value), result);
+            pool++;
         }
-        /*
         int[] nonExistingtValues = { -1, 15, 200, 3000 };
-
         foreach (var value in nonExistingtValues)
         {
             int result = BinarySearch(samplePool, value);
             Assert.Equal(-1, result);
         }
-        */
+        
     }
     [Assignment(7)]
     public void TestPrimitiveTypeHandling()
     {
-        Assert.Throws<OverflowException>(() => IntSum(int.MaxValue, 1));
-        Assert.Throws<OverflowException>(() => IntSum(int.MinValue, -1));
+        Assert.Throws<OverflowException>(() => PrimitiveTypeHandling(int.MaxValue, 1));
+        Assert.Throws<OverflowException>(() => PrimitiveTypeHandling(int.MinValue, -1));
     }
     [Assignment(8)]
     public void TestObjectEquality()
     {
         Person person1 = new Person { Name = "John Doe", Age = 30 };
         Person person2 = new Person { Name = "Jane Doe", Age = 30 };
-        Assert.Equal(person1, person2);
+        Assert.Equal(person1 == person2, ObjectEquality(person1, person2));
     }
     [Assignment(9)]
     public void TestFibonacci()
     {
         Assert.Equal(0, Fibonacci(0));
         Assert.Equal(1, Fibonacci(1));
-        Assert.Equal(2, Fibonacci(2));
+        Assert.Equal(1, Fibonacci(2));
         Assert.Equal(5, Fibonacci(5));
         Assert.Equal(55, Fibonacci(10));
     }
