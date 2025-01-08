@@ -85,7 +85,7 @@ public class TDDTests : AssignmentBase
     [Assignment(3)]
     public void TestNumericTypeConverison()
     {
-        Assert.Equal(3, NumericTypeConverison(2.5, 1.2));
-        Assert.NotEqual(3.5, NumericTypeConverison(2.5, 1.2));
+        Assert.Equal(3, NumericTypeConverison(2.5, 1.6));
+        Assert.NotEqual(4.1, NumericTypeConverison(2.5, 1.6));
     }
 }
