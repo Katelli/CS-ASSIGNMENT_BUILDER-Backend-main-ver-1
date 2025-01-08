@@ -93,8 +93,8 @@ public class TestArrayAndListMethods : AssignmentBase
 
     /// <summary>
     /// PlaceHolder for missing method for assignment 7
-    /// I tried testing out some stuff, but I'm not sure what
-    /// the assignment wants yet.
+    /// I tried testing out some stuff, I'm not sure what
+    /// the assignment is really asking for, but it works.
     /// </summary>
     /// <param name="n"></param>
     /// <returns></returns>
@@ -109,7 +109,7 @@ public class TestArrayAndListMethods : AssignmentBase
         {
             return new int[a+b];
         }
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     /// <summary>
